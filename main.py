@@ -1,6 +1,6 @@
 import os
-
-
+from utilsia import readGraph
+from dijikstra import shortest_path
 while True:
     # Mostramos el menu
     os.system('cls')
@@ -17,8 +17,12 @@ while True:
 
     if choice == "1":
         print()
-
-
+        file = input('Ingrese el nombre del archivo que define el grafo: ')
+        node_count, edges_count, vertices = readGraph(file)
+        origin = int(input('Ingrese el nodo origen: '))
+        destiny = int(input('Ingrese el nodo destino: '))
+        shortest_path = shortest_path(node_count, vertices, origin, destiny)
+        print(shortest_path)
         input("\nPulsa una tecla para continuar")
     elif choice == "2":
         print()

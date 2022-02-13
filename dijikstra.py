@@ -1,26 +1,10 @@
 from typing import Optional
+from utilsia import Node, Weight, Vertices
 
-Node = int
-Weight = int
-Vertices = list[list[[Node, Weight]]]
-NODE_COUNT = 6
-
-
-test_vertices: Vertices = [[] for _ in range(NODE_COUNT)]
-
-#     Origen   Destino, Peso
-test_vertices[0].append((2, 12))
-test_vertices[0].append((3, 60))
-test_vertices[1].append((0, 10))
-test_vertices[2].append((1, 20))
-test_vertices[2].append((3, 32))
-test_vertices[4].append((0, 7))
-
-
-def shortest_path(vertices: Vertices, origin: Node, destination: Node) -> [list[Node], Weight]:
-    last_node: list[Optional[Node]] = [None for _ in range(NODE_COUNT)]
-    weights = [float('inf') for _ in range(NODE_COUNT)]
-    unexplored_nodes: list[Node] = [i for i in range(NODE_COUNT)]
+def shortest_path(node_count: Node, vertices: Vertices, origin: Node, destination: Node) -> [list[Node], Weight]:
+    last_node: list[Optional[Node]] = [None for _ in range(node_count)]
+    weights = [float('inf') for _ in range(node_count)]
+    unexplored_nodes: list[Node] = [i for i in range(node_count)]
 
     last_node[origin] = origin
     weights[origin] = 0
@@ -48,5 +32,3 @@ def shortest_path(vertices: Vertices, origin: Node, destination: Node) -> [list[
 
     return path, weights[destination]
 
-
-print(shortest_path(test_vertices, 3, 4))
