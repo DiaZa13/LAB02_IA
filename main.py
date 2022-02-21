@@ -1,5 +1,5 @@
 import os
-from utilsia import readGraph, readSudoku, writeSudoku
+from util import read_graph, read_sudoku, write_sudoku
 from dijikstra import shortest_path
 
 while True:
@@ -16,7 +16,7 @@ while True:
     if choice == "1":
         print()
         file = input('Ingrese el nombre del archivo que define el grafo: ')
-        node_count, edges_count, vertices = readGraph(file)
+        node_count, edges_count, vertices = read_graph(file)
         origin = int(input('Ingrese el nodo origen: '))
         destiny = int(input('Ingrese el nodo destino: '))
         shortest_path = shortest_path(node_count, vertices, origin, destiny)
@@ -25,9 +25,9 @@ while True:
     elif choice == "2":
         print()
         read_file = input('Ingrese el nombre del archivo que define el Sudoku: ')
-        size, restrictions_count, board = readSudoku(read_file)
+        size, restrictions_count, board = read_sudoku(read_file)
         write_file = input('Ingrese el nombre del archivo que guardara las soluciones: ')
-        writeSudoku(write_file, board, size)
+        write_sudoku(write_file, board, size)
         print(f'La soluciones se han guardado en {write_file}')
         input("\nPulsa una tecla para continuar")
     elif choice == "3":

@@ -4,7 +4,8 @@ Node = int
 Weight = int
 Vertices = list[list[[Node, Weight]]]
 
-def readGraph(file):
+
+def read_graph(file):
     with open(file, 'r') as graph:
         node_count = int(graph.readline())
         edges_count = int(graph.readline())
@@ -16,7 +17,7 @@ def readGraph(file):
     return node_count, edges_count, edges
 
 
-def readSudoku(file):
+def read_sudoku(file):
     with open(file, 'r') as sudoku:
         size = int(sudoku.readline())
         restrictions_count = int(sudoku.readline())
@@ -51,7 +52,7 @@ def print_sudoku(sudoku, size, writer):
     writer.write(separator.join(result))
 
 
-def writeSudoku(file, board, size: int):
+def write_sudoku(file, board, size: int):
     with open(file, 'w') as sudoku:
         count = 1
         for solution in solve(board, size):

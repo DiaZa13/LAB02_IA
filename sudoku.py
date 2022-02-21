@@ -2,6 +2,7 @@ from copy import deepcopy
 
 Sudoku = list[list[int]]
 
+
 def find_empty(sudoku: Sudoku, size) -> [int, int]:
     for y in range(size):
         for x in range(size):
@@ -50,6 +51,7 @@ def is_valid(sudoku: Sudoku, x: int, y: int, n: int, square_height: int, square_
             n in square(sudoku, x, y, square_height, square_length)
     )
 
+
 def solve(sudoku: Sudoku, size: int) -> list[Sudoku]:
     empty_spot = find_empty(sudoku, size)
     if empty_spot is None:
@@ -63,4 +65,19 @@ def solve(sudoku: Sudoku, size: int) -> list[Sudoku]:
             copy[y][x] = option
             solutions.extend(solve(copy, size))
         return solutions
+
+
+# Esto solo ocurre si se está corriendo directamente
+if __name__ == '__main__':
+    from sys import argv
+    from util import read_sudoku, write_sudoku
+
+    if len(argv) != 3:
+        print("Se debe ingresar un archivo input y un archivo output.")
+        print("ie. py sudoku.py .\\data\\sudoku.txt .\\data\\sudoku_solutions.txt")
+        exit()
+
+    size, restrictions_count, board = read_sudoku(argv[1])
+    write_sudoku(argv[2], board, size)
+
 
